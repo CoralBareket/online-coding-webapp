@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import hljs from 'highlight.js';
-import 'highlight.js/styles/default.css';
+import "highlight.js/styles/github.css";
+
 
 const socket = io('http://localhost:3000');
 
@@ -13,10 +14,10 @@ const CodeBlock = ({ title }) => {
   const codeRef = useRef(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/code-block/${title}`)
+    fetch('http://localhost:3000/code-block/${title}')
       .then(response => {
         if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
+          throw new Error('HTTP error! status: ${response.status}');
         }
         return response.json();
       })
@@ -43,6 +44,7 @@ const CodeBlock = ({ title }) => {
 
   useEffect(() => {
     if (codeRef.current) {
+      codeRef.current.removeAttribute('data-highlighted');
       hljs.highlightBlock(codeRef.current);
     }
   }, [code]);
@@ -57,15 +59,15 @@ const CodeBlock = ({ title }) => {
   return (
     <div>
       <h1>{title}</h1>
-      {isMentor ? (
+
         <pre><code ref={codeRef} className="language-javascript">{code}</code></pre>
-      ) : (
+
         <textarea
           value={code}
           onChange={handleCodeChange}
           style={{ width: '100%', height: '400px' }}
         ></textarea>
-      )}
+
       {isCorrect && <div style={{ fontSize: '48px' }}>😊</div>}
     </div>
   );
