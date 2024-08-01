@@ -1,16 +1,29 @@
-import React, { useState } from 'react';
-import Lobby from './Lobby';
-import CodeBlock from './CodeBlock';
+import React, { useState,useEffect } from 'react';
+import Lobby from './components/Lobby';
+import CodeBlock from './components/CodeBlock';
 
 const App = () => {
   const [selectedCodeBlock, setSelectedCodeBlock] = useState(null);
 
+
+   useEffect(() => {
+    const handleBeforeUnload = () => {
+      localStorage.clear();
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
+
   return (
     <div>
-      {selectedCodeBlock ? (
-        <CodeBlock title={selectedCodeBlock} />
+      {!selectedCodeBlock ? (
+         <Lobby setSelectedCodeBlock={setSelectedCodeBlock} />
       ) : (
-        <Lobby setSelectedCodeBlock={setSelectedCodeBlock} />
+        <CodeBlock title={selectedCodeBlock} />
       )}
     </div>
   );
