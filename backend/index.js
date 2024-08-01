@@ -8,7 +8,7 @@ const app = express();
 const server = http.createServer(app);
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3001",
+    origin: "https://online-coding-web-production-7629.up.railway.app",
     methods: ["GET", "POST"]
   }
 });
