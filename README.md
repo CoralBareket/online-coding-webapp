@@ -4,11 +4,19 @@ This is a demo application with a Node.js backend and a React frontend.
 
 ## Project Structure
 
-.
-├── backend
-│   └── index.js
+The project is organized into the following directories and files:
+
+├── backend                
+│   └── src                 
+│       ├── controllers
+│       ├── handlers
+│       ├── routes
+│       └── index.js
 └── frontend
-    └── [React app files]
+│   └── src
+│       └── components
+│   └── public
+        
 
 ## Prerequisites
 
@@ -26,7 +34,7 @@ This is a demo application with a Node.js backend and a React frontend.
     npm install
     
 3. Start the backend server:
-    node index.js
+    npm start
     
     The backend server should now be running on http://localhost:3000 (or the port specified in index.js).
 
