@@ -17,7 +17,6 @@ The project is organized into the following directories and files:
 │       └── components
 │   └── public
         
-
 ## Prerequisites
 
 - Node.js (v14.x or higher)
