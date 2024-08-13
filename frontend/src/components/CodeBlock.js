@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import io from 'socket.io-client';
 import hljs from 'highlight.js';
-import "highlight.js/styles/github.css";
 import styles from './CodeBlock.module.css';
 
 function normalizeString(str) {
@@ -33,7 +32,7 @@ const CodeBlock = ({ title }) => {
       localStorage.setItem('mentorExists', 'true');
     }
 
-    fetch(`http://localhost:3000/code-block/${title}`)
+    fetch(`http://localhost:3000/code-blocks/${title}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
